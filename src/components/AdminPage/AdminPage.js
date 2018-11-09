@@ -9,11 +9,6 @@ import AdminBackToProjectsButton from '../Material-UI/AdminBackToProjectsButton'
 
 
 class AdminPage extends Component {
-  //will send the user back to the projects page when clicked
-  handleClick = () => {
-    console.log('sending user back to projects page');
-    window.location.hash = "";
-  }
 
   // Renders the AdminPage
   render() {

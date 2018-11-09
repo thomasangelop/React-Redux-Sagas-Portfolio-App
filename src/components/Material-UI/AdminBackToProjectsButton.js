@@ -16,7 +16,7 @@ function TextButtons(props) {
   const { classes } = props;
   return (
     <div>
-      <Button color="primary" className={classes.button}>
+      <Button color="primary" href="/" className={classes.button}>
         Back To Projects
       </Button>
     </div>
