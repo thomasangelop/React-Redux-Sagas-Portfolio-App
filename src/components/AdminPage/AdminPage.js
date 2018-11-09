@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 
 //import app bar header from material ui
 import AdminAppBar from '../Material-UI/AdminAppBar';
+import AdminPageForm from '../Material-UI/AdminPageForm';
+
+//import input form from material ui
 
 
 class AdminPage extends Component {
@@ -11,6 +14,7 @@ class AdminPage extends Component {
     return (
         <div className="App PageRoutes">
           <AdminAppBar />
+          <AdminPageForm />
         </div>
       
     );
