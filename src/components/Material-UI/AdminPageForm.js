@@ -109,6 +109,7 @@ class FilledTextFields extends React.Component {
           onChange={this.handleChange}
         />
         <TextField
+          required
           id="filled-multiline-required"
           label="Description"
           name="description"
@@ -126,7 +127,11 @@ class FilledTextFields extends React.Component {
             onClick={this.handleClick}
             name="submit"
             label="Submit"
-        />
+            margin="normal"
+            variant="filled"
+        >
+            Submit
+        </Button>
       </form>
     );
   }
