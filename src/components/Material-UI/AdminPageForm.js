@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
-import AdminPageSubmitFormButton from '../Material-UI/AdminSubmitFormButton';
+import Button from '@material-ui/core/Button';
+
+// import AdminPageSubmitFormButton from '../Material-UI/AdminSubmitFormButton';
 
 const styles = theme => ({
   container: {
@@ -19,6 +21,12 @@ const styles = theme => ({
   },
   menu: {
     width: 200,
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
   },
 });
 
@@ -40,11 +48,9 @@ class FilledTextFields extends React.Component {
     console.log(event.target.value);
   };
 
-  handleClick = (event) => {
+  handleClick = () => {
       console.log('form was submitted');
-      event.preventDefault();
       this.props.dispatch( {type: 'ENTERED_NEW_PROJECT', payload: this.state } );
-      this.state();
   }
 
   render() {
@@ -108,12 +114,19 @@ class FilledTextFields extends React.Component {
           name="description"
           rowsMax="4"
           value={this.state.multiline}
-          onChange={() => this.handleChange('multiline')}
+          onChange={this.handleChange}
           className={classes.textField}
           margin="normal"
           variant="filled"
         />
-        <AdminPageSubmitFormButton onClick={this.handleClick}/>
+
+        <Button 
+            color="primary" 
+            className={classes.button} 
+            onClick={this.handleClick}
+            name="submit"
+            label="Submit"
+        />
       </form>
     );
   }
