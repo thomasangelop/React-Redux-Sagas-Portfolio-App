@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
+import AdminPageSubmitFormButton from '../Material-UI/AdminSubmitFormButton';
 
 const styles = theme => ({
   container: {
@@ -31,11 +32,20 @@ class FilledTextFields extends React.Component {
     description:''
   };
 
-  handleChange = name => event => {
+  handleChange = (event) => {
     this.setState({
-      [name]: event.target.value,
+      [event.target.name]: event.target.value,
     });
+    console.log('handling change');
+    console.log(event.target.value);
   };
+
+  handleClick = (event) => {
+      console.log('form was submitted');
+      event.preventDefault();
+      this.props.dispatch( {type: 'ENTERED_NEW_PROJECT', payload: this.state } );
+      this.state();
+  }
 
   render() {
     const { classes } = this.props;
@@ -50,6 +60,7 @@ class FilledTextFields extends React.Component {
           className={classes.textField}
           margin="normal"
           variant="filled"
+          onChange={this.handleChange}
         />
         <TextField
           required
@@ -59,6 +70,7 @@ class FilledTextFields extends React.Component {
           className={classes.textField}
           margin="normal"
           variant="filled"
+          onChange={this.handleChange}
         />
         <TextField
           required
@@ -68,6 +80,7 @@ class FilledTextFields extends React.Component {
           className={classes.textField}
           margin="normal"
           variant="filled"
+          onChange={this.handleChange}
         />
         <TextField
           required
@@ -77,6 +90,7 @@ class FilledTextFields extends React.Component {
           className={classes.textField}
           margin="normal"
           variant="filled"
+          onChange={this.handleChange}
         />
         <TextField
           required
@@ -86,6 +100,7 @@ class FilledTextFields extends React.Component {
           className={classes.textField}
           margin="normal"
           variant="filled"
+          onChange={this.handleChange}
         />
         <TextField
           id="filled-multiline-required"
@@ -98,6 +113,7 @@ class FilledTextFields extends React.Component {
           margin="normal"
           variant="filled"
         />
+        <AdminPageSubmitFormButton onClick={this.handleClick}/>
       </form>
     );
   }
