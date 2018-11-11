@@ -2,9 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import ButtonBase from '@material-ui/core/ButtonBase';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
@@ -18,15 +19,20 @@ const mapReduxStateToProps = reduxState => ({
 //styles preferences for material ui
 const styles = theme => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
+    flexGrow: 1,
+    maxWidth: 600,
+    padding: theme.spacing.unit * 2,
+    margin: theme.spacing.unit * 4,
   },
-  gridList: {
-    width: 500,
-    height: 450,
+  image: {
+    width: 128,
+    height: 128,
+  },
+  img: {
+    margin: 'auto',
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight: '100%',
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
@@ -53,31 +59,40 @@ const styles = theme => ({
   return (
     <div className={classes.root}>
     {/* using grid to display projects from database */}
-    <pre>{JSON.stringify(this.props.reduxState)}</pre>
-      <GridList cellHeight={180} className={classes.gridList}>
-        <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-          <ListSubheader component="div">Project Name</ListSubheader>
-        </GridListTile>
-        {this.props.reduxState.projects.map(projects => (
-          <GridListTile key={projects.id}>
-            <img src={projects.thumbnail} alt={projects.name} />
-            <p name={projects.name} />
-              description={projects.description}
-              thumbnail={projects.thumbnail}
-              website={projects.website}
-              github={projects.github}
-              date_completed={projects.date_completed}
-              tag_id={projects.tag_id}
-            <GridListTileBar
-              actionIcon={
-                <IconButton className={classes.icon}>
-                  <DeleteOutlinedIcon className={classes.icon} />
-                </IconButton>
-              }
-            />
-          </GridListTile>
-        ))}
-      </GridList>
+    {/* <pre>{JSON.stringify(this.props.reduxState)}</pre> */}
+      <div>
+          {this.props.reduxState.projects.map(projects => 
+          <Paper className={classes.root} key={projects.id}>
+          <Grid container spacing={16}>
+            <Grid item>
+              <ButtonBase className={classes.image}>
+                <img className={classes.img} alt="complex" src={projects.thumbnail} />
+              </ButtonBase>
+            </Grid>
+            <Grid item xs={12} sm container>
+              <Grid item xs container direction="column" spacing={16}>
+                <Grid item xs>
+                  <Typography gutterBottom variant="subtitle1">
+                    {projects.name}
+                  </Typography>
+                  <Typography gutterBottom>{projects.description}</Typography>
+                  <Typography gutterBottom>{projects.website}</Typography>
+                  <Typography gutterBottom>{projects.github}</Typography>
+                  <Typography gutterBottom>{projects.date_completed}</Typography>
+                  <Typography color="textSecondary">Tag: {projects.tag_id}</Typography>
+                </Grid>
+                <Grid item>
+                  <Typography style={{ cursor: 'pointer' }}>Remove</Typography>
+                </Grid>
+              </Grid>
+              <Grid item>
+                <Typography variant="subtitle1">$19.00</Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Paper>
+        )}
+      </div>
     </div>
   );
 }
