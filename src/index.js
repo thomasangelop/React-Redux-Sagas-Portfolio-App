@@ -12,12 +12,12 @@ import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
 
-function* getProjectsSaga(action){
+function* setProjectsSaga(action){
     console.log('in projects saga');
     // try/catch is standard JavaScript way to handle errors 
     try {
         const response = yield call(axios.get, '/api/projects' );
-        yield put( { type: 'GET_PROJECTS', payload: response.data } );
+        yield put( { type: 'SET_PROJECTS', payload: response.data } );
     }
     catch (error) {
         console.log('error with project get request', error);
@@ -26,7 +26,7 @@ function* getProjectsSaga(action){
 
 // Create the rootSaga generator function
 function* rootSaga() {
-    yield takeEvery( 'FECTCH_PROJECTS', getProjectsSaga)
+    yield takeEvery( 'FETCH_PROJECTS', setProjectsSaga)
 }
 
 // Create sagaMiddleware

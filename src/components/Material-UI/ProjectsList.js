@@ -8,7 +8,6 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
-import tileData from './tileData';
 import { connect } from 'react-redux';
 
 //setup redux state for global usage of information 
@@ -57,14 +56,19 @@ const styles = theme => ({
     <pre>{JSON.stringify(this.props.reduxState)}</pre>
       <GridList cellHeight={180} className={classes.gridList}>
         <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-          <ListSubheader component="div">Project Name</ListSubheader><ListSubheader component="div">Action</ListSubheader>
+          <ListSubheader component="div">Project Name</ListSubheader>
         </GridListTile>
-        {tileData.map(tile => (
-          <GridListTile key={tile.img}>
-            {/* <img src={tile.img} alt={tile.title} /> */}
+        {this.props.reduxState.projects.map(projects => (
+          <GridListTile key={projects.id}>
+            <img src={projects.thumbnail} alt={projects.name} />
+            <p name={projects.name} />
+              description={projects.description}
+              thumbnail={projects.thumbnail}
+              website={projects.website}
+              github={projects.github}
+              date_completed={projects.date_completed}
+              tag_id={projects.tag_id}
             <GridListTileBar
-              title={tile.title}
-              subtitle={<span>by: {tile.author}</span>}
               actionIcon={
                 <IconButton className={classes.icon}>
                   <DeleteOutlinedIcon className={classes.icon} />
