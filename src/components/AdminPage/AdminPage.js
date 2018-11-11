@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import AdminAppBar from '../Material-UI/AdminAppBar';
 import AdminPageForm from '../Material-UI/AdminPageForm';
 import AdminBackToProjectsButton from '../Material-UI/AdminBackToProjectsButton';
-
+import AdminProjectsList from '../Material-UI/AdminProjectsList';
 
 
 class AdminPage extends Component {
@@ -14,9 +14,14 @@ class AdminPage extends Component {
   render() {
     return (
         <div className="App PageRoutes">
-          <AdminAppBar />
-          <AdminBackToProjectsButton />
-          <AdminPageForm />
+          <div className="Container">
+            <AdminAppBar />
+            <AdminBackToProjectsButton />
+            <AdminPageForm />
+          </div>
+          <div className="Container">
+            <AdminProjectsList />
+          </div>
         </div>
       
     );
