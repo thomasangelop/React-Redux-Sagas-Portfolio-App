@@ -1,4 +1,5 @@
 //imports for stuff on the page that is being used
+import axios from 'axios';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -52,8 +53,21 @@ const styles = theme => ({
     this.props.dispatch ( { type: 'FETCH_PROJECTS', payload: this.state } );
   }
 
+  //delete the project from the list and the database when button is clicked
   handleRemove = (id) => {
-    this.props.dispatch ( {type: 'REMOVE_PROJECT', payload: id})
+    console.log('deleteing project id:', id);
+    axios({
+      method: 'DELETE',
+      url: `/api/projects/${id}`
+    })
+    .then( (response ) => {
+      this.getProjects();
+      console.log(`deleted project id: ${id} successfully`);
+    })
+    .catch( (error) => {
+      console.log(`error deleting project id: ${id}`);
+      
+    })
   }
 
   render() {
