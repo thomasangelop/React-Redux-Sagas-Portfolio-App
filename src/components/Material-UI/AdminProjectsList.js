@@ -81,13 +81,13 @@ const styles = theme => ({
                   <Typography gutterBottom>{projects.date_completed}</Typography>
                   <Typography color="textSecondary">Tag: {projects.tag_id}</Typography>
                 </Grid>
-                {/* <Grid item>
-                  <Typography style={{ cursor: 'pointer' }}>Sample Button</Typography>
-                </Grid> */}
+                <Grid item>
+                  <Typography style={{ cursor: 'pointer' }}>Remove</Typography>
+                </Grid>
               </Grid>
-              {/* <Grid item>
-                <Typography variant="subtitle1">Sample text</Typography>
-              </Grid> */}
+              <Grid item>
+                <Typography variant="subtitle1">$19.00</Typography>
+              </Grid>
             </Grid>
           </Grid>
         </Paper>
