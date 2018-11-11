@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { connect } from 'react-redux';
@@ -35,7 +34,7 @@ const styles = theme => ({
     maxHeight: '100%',
   },
   icon: {
-    color: 'rgba(255, 255, 255, 0.54)',
+    color: theme.palette.text.primary,
   },
 });
 
@@ -51,6 +50,10 @@ const styles = theme => ({
     //Dispatch action to get the elements from the server 
     //This is picked up by watcherSaga in index.js
     this.props.dispatch ( { type: 'FETCH_PROJECTS', payload: this.state } );
+  }
+
+  handleRemove = (id) => {
+    this.props.dispatch ( {type: 'REMOVE_PROJECT', payload: id})
   }
 
   render() {
@@ -81,13 +84,13 @@ const styles = theme => ({
                   <Typography gutterBottom>{projects.date_completed}</Typography>
                   <Typography color="textSecondary">Tag: {projects.tag_id}</Typography>
                 </Grid>
-                <Grid item>
-                  <Typography style={{ cursor: 'pointer' }}>Remove</Typography>
-                </Grid>
+                <IconButton className={classes.icon}>
+                  <DeleteOutlinedIcon onClick={() => this.handleRemove(projects.id)} style={{ cursor: 'pointer' }} className={classes.icon} />
+                </IconButton>
               </Grid>
-              <Grid item>
+              {/* <Grid item>
                 <Typography variant="subtitle1">$19.00</Typography>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Grid>
         </Paper>
