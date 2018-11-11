@@ -19,6 +19,7 @@ function SimpleAppBar(props) {
       <AppBar position="static" color="default">
         <Toolbar>
           <Typography variant="h6" color="inherit">
+            Thomas Angelo Pinataro
           </Typography>
         </Toolbar>
       </AppBar>

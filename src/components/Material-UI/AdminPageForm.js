@@ -128,7 +128,6 @@ class FilledTextFields extends React.Component {
             name="submit"
             label="Submit"
             margin="normal"
-            variant="filled"
         >
             Submit
         </Button>
