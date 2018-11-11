@@ -32,25 +32,32 @@ const styles = theme => ({
 
 class FilledTextFields extends React.Component {
   state = {
-    projectName:'',
-    date:'',
-    tag:'',
-    gitHubUrl:'',
-    websiteUrl:'',
-    description:''
+    name:'',
+    description:'',
+    website:'',
+    github:'',
+    date_completed:'',
+    tag_id:''
   };
 
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     });
-    console.log('handling change');
-    console.log(event.target.value);
   };
 
   handleClick = () => {
       console.log('form was submitted');
-      this.props.dispatch( {type: 'ENTERED_NEW_PROJECT', payload: this.state } );
+      this.props.dispatch( {type: 'ADD_PROJECT', payload: this.state } );
+      //clear state
+      this.setState({
+        name:'',
+        description:'',
+        website:'',
+        github:'',
+        date_completed:'',
+        tag_id:''
+      });
   }
 
   render() {
@@ -62,7 +69,8 @@ class FilledTextFields extends React.Component {
           required
           id="filled-required"
           label="Project Name"
-          name="projectName"
+          value={this.state.name}
+          name="name"
           className={classes.textField}
           margin="normal"
           variant="filled"
@@ -71,8 +79,23 @@ class FilledTextFields extends React.Component {
         <TextField
           required
           id="filled-required"
-          label="Date"
-          name="date"
+          label=""
+          type="date"
+          defaultValue="2017-05-24"
+          value={this.state.date_completed}
+          name="date_completed"
+          className={classes.container}
+          margin="normal"
+          variant="filled"
+          onChange={this.handleChange}
+        />
+        <TextField
+          required
+          id="filled-required"
+          label="Tag ID"
+          type="number"
+          value={this.state.tag_id}
+          name="tag_id"
           className={classes.textField}
           margin="normal"
           variant="filled"
@@ -81,8 +104,9 @@ class FilledTextFields extends React.Component {
         <TextField
           required
           id="filled-required"
-          label="Tag"
-          name="tag"
+          label="GitHub Link"
+          value={this.state.github}
+          name="github"
           className={classes.textField}
           margin="normal"
           variant="filled"
@@ -91,18 +115,9 @@ class FilledTextFields extends React.Component {
         <TextField
           required
           id="filled-required"
-          label="GitHub Url"
-          name="gitHubUrl"
-          className={classes.textField}
-          margin="normal"
-          variant="filled"
-          onChange={this.handleChange}
-        />
-        <TextField
-          required
-          id="filled-required"
-          label="Website Url"
-          name="websiteUrl"
+          label="Website Link"
+          value={this.state.website}
+          name="website"
           className={classes.textField}
           margin="normal"
           variant="filled"
@@ -112,9 +127,9 @@ class FilledTextFields extends React.Component {
           required
           id="filled-multiline-required"
           label="Description"
+          value={this.state.description}
           name="description"
           rowsMax="4"
-          value={this.state.multiline}
           onChange={this.handleChange}
           className={classes.textField}
           margin="normal"

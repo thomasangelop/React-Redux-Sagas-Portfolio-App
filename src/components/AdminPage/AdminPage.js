@@ -17,9 +17,11 @@ class AdminPage extends Component {
           <div className="Container">
             <AdminAppBar />
             <AdminBackToProjectsButton />
+            <h2>Add A New Project:</h2>
             <AdminPageForm />
           </div>
           <div className="Container">
+          <h2>Projects List:</h2>
             <AdminProjectsList />
           </div>
         </div>

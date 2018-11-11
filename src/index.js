@@ -24,9 +24,21 @@ function* setProjectsSaga(action){
     }
 }
 
+function* addProjectSaga(action){
+    console.log('Adding a project to database');
+    try {
+        yield call( axios.post, '/api/projects', action.payload);
+        yield put( { type: 'FETCH_PROJECTS' } );
+    }
+    catch (error) {
+        console.log('error with project post requst');
+    }
+}
+
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery( 'FETCH_PROJECTS', setProjectsSaga)
+    yield takeEvery( 'ADD_PROJECT', addProjectSaga)
 }
 
 // Create sagaMiddleware

@@ -19,21 +19,23 @@ router.get('/', (req, res) => {
 })
 
 
+
+
 // Setup a POST route to add a new project to the database
-// router.post('/', (req, res) => {
-//     const employee = req.body;
-//     const sqlText = `INSERT INTO projects (firstName, lastName, jobTitle, annualSalary) VALUES 
-//   ($1, $2, $3, $4)`;
-//     pool.query(sqlText, [employee.firstName, employee.lastName, employee.jobTitle, employee.annualSalary])
-//         .then((result) => {
-//             console.log(`Added to the database`, employee);
-//             res.sendStatus(201);
-//         })
-//         .catch((error) => {
-//             console.log(`Error making database query ${sqlText}`, error);
-//             res.sendStatus(500); // Good server always responds
-//         })
-// })
+router.post('/', (req, res) => {
+    const project = req.body;
+    const sqlText = `INSERT INTO projects (name, description, website, github, date_completed, tag_id) VALUES 
+  ($1, $2, $3, $4, $5, $6)`;
+    pool.query(sqlText, [project.name, project.description, project.website, project.github, project.date_completed, project.tag_id])
+        .then((result) => {
+            console.log(`Added to the database`, project);
+            res.sendStatus(201);
+        })
+        .catch((error) => {
+            console.log(`Error making database query ${sqlText}`, error);
+            res.sendStatus(500); // Good server always responds
+        })
+})
 
 // Setup DELETE to remove an project
 router.delete('/:id', (req, res) => {
