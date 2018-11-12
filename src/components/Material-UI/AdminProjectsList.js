@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { connect } from 'react-redux';
@@ -93,8 +94,8 @@ const styles = theme => ({
                     {projects.name}
                   </Typography>
                   <Typography gutterBottom>{projects.description}</Typography>
-                  <Typography type="link" onClick={()=> window.open(`${projects.website}`, "_blank")} gutterBottom>{projects.website}</Typography>
-                  <Typography onClick={()=> window.open(`${projects.github}`, "_blank")} gutterBottom>{projects.github}</Typography>
+                  <Button onClick={()=> window.open(`${projects.website}`, "_blank")} gutterBottom>{projects.website}</Button>
+                  <Button onClick={()=> window.open(`${projects.github}`, "_blank")} gutterBottom>{projects.github}</Button>
                   <Typography gutterBottom>{projects.date_completed}</Typography>
                   <Typography color="textSecondary">Tag: {projects.tag_id}</Typography>
                 </Grid>
