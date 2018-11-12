@@ -57,7 +57,7 @@ const styles = theme => ({
   return (
     <div className={classes.root}>
     {/* using grid to display projects from database */}
-    <pre>{JSON.stringify(this.props.reduxState)}</pre>
+    {/* <pre>{JSON.stringify(this.props.reduxState)}</pre> */}
       <div>
           {this.props.reduxState.projects.map(projects => 
           <Paper className={classes.root} key={projects.id}>

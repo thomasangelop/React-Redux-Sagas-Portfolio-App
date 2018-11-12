@@ -97,7 +97,7 @@ const styles = theme => ({
                   <Button onClick={()=> window.open(`${projects.website}`, "_blank")} gutterBottom>{projects.website}</Button>
                   <Button onClick={()=> window.open(`${projects.github}`, "_blank")} gutterBottom>{projects.github}</Button>
                   <Typography gutterBottom>{projects.date_completed}</Typography>
-                  <Typography color="textSecondary">Tag: {projects.tag_id}</Typography>
+                  <Typography color="textSecondary">Tag: {projects.tag_name}</Typography>
                 </Grid>
                 <IconButton className={classes.icon}>
                   <DeleteOutlinedIcon onClick={() => this.handleRemove(projects.id)} style={{ cursor: 'pointer' }} className={classes.icon} />
