@@ -122,12 +122,12 @@ class FilledTextFields extends React.Component {
             onChange={this.handleChange}
             label="Tag"
           >
-            <MenuItem onChange={this.handleChange} name="tag_id" value="React">React</MenuItem>
-            <MenuItem onChange={this.handleChange} name="tag_id" value="jQuery">jQuery</MenuItem>
-            <MenuItem onChange={this.handleChange} name="tag_id" value="Node">Node</MenuItem>
-            <MenuItem onChange={this.handleChange} name="tag_id" value="SQL">SQL</MenuItem>
-            <MenuItem onChange={this.handleChange} name="tag_id" value="Redux">Redux</MenuItem>
-            <MenuItem onChange={this.handleChange} name="tag_id" value="HTML">HTML</MenuItem>
+            <MenuItem onChange={this.handleChange} name="tag_id" value="1">React</MenuItem>
+            <MenuItem onChange={this.handleChange} name="tag_id" value="2">jQuery</MenuItem>
+            <MenuItem onChange={this.handleChange} name="tag_id" value="3">Node</MenuItem>
+            <MenuItem onChange={this.handleChange} name="tag_id" value="4">SQL</MenuItem>
+            <MenuItem onChange={this.handleChange} name="tag_id" value="5">Redux</MenuItem>
+            <MenuItem onChange={this.handleChange} name="tag_id" value="6">HTML</MenuItem>
           </Select>
         <TextField
           required
