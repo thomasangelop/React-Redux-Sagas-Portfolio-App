@@ -2,17 +2,45 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App.js';
+import axios from 'axios';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 // Provider allows us to use redux within our react app
 import { Provider } from 'react-redux';
+import { call, put, takeEvery } from 'redux-saga/effects';
 import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
 
+function* setProjectsSaga(action){
+    console.log('in projects saga');
+    // try/catch is standard JavaScript way to handle errors 
+    try {
+        const response = yield call(axios.get, '/api/projects' );
+        yield put( { type: 'SET_PROJECTS', payload: response.data } );
+    }
+    catch (error) {
+        console.log('error with project get request', error);
+    }
+}
+
+function* addProjectSaga(action){
+    console.log('Adding a project to database');
+    try {
+        yield call( axios.post, '/api/projects', action.payload);
+        yield put( { type: 'FETCH_PROJECTS' } );
+        alert('Successfully Added Project To Database');
+    }
+    catch (error) {
+        console.log('error with project post requst');
+        alert('Error Adding Project To Database');
+    }
+}
+
 // Create the rootSaga generator function
 function* rootSaga() {
-
+    yield takeEvery( 'FETCH_PROJECTS', setProjectsSaga)
+    yield takeEvery( 'ADD_PROJECT', addProjectSaga)
 }
 
 // Create sagaMiddleware
