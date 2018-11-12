@@ -4,8 +4,10 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
-// import AdminPageSubmitFormButton from '../Material-UI/AdminSubmitFormButton';
+
 
 const styles = theme => ({
   container: {
@@ -28,6 +30,13 @@ const styles = theme => ({
   input: {
     display: 'none',
   },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2,
+  },
 });
 
 class FilledTextFields extends React.Component {
@@ -41,9 +50,12 @@ class FilledTextFields extends React.Component {
   };
 
   handleChange = (event) => {
+    event.preventDefault();
     this.setState({
       [event.target.name]: event.target.value,
     });
+    console.log('new tag', this.state.tag_id);
+    
   };
 
   handleClick = () => {
@@ -89,7 +101,7 @@ class FilledTextFields extends React.Component {
           variant="filled"
           onChange={this.handleChange}
         />
-        <TextField
+        {/* <TextField
           required
           id="filled-required"
           label="Tag ID"
@@ -100,7 +112,23 @@ class FilledTextFields extends React.Component {
           margin="normal"
           variant="filled"
           onChange={this.handleChange}
-        />
+        /> */}
+        <Select
+            required
+            id="filled-required"
+            value={this.state.tag_id}
+            name="tag_id"
+            className={classes.select}
+            onChange={this.handleChange}
+            label="Tag"
+          >
+            <MenuItem onChange={this.handleChange} name="tag_id" value="React">React</MenuItem>
+            <MenuItem onChange={this.handleChange} name="tag_id" value="jQuery">jQuery</MenuItem>
+            <MenuItem onChange={this.handleChange} name="tag_id" value="Node">Node</MenuItem>
+            <MenuItem onChange={this.handleChange} name="tag_id" value="SQL">SQL</MenuItem>
+            <MenuItem onChange={this.handleChange} name="tag_id" value="Redux">Redux</MenuItem>
+            <MenuItem onChange={this.handleChange} name="tag_id" value="HTML">HTML</MenuItem>
+          </Select>
         <TextField
           required
           id="filled-required"

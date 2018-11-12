@@ -29,9 +29,11 @@ function* addProjectSaga(action){
     try {
         yield call( axios.post, '/api/projects', action.payload);
         yield put( { type: 'FETCH_PROJECTS' } );
+        alert('Successfully Added Project To Database');
     }
     catch (error) {
         console.log('error with project post requst');
+        alert('Error Adding Project To Database');
     }
 }
 

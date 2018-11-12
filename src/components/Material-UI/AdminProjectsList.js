@@ -93,8 +93,8 @@ const styles = theme => ({
                     {projects.name}
                   </Typography>
                   <Typography gutterBottom>{projects.description}</Typography>
-                  <Typography gutterBottom>{projects.website}</Typography>
-                  <Typography gutterBottom>{projects.github}</Typography>
+                  <Typography type="link" onClick={()=> window.open(`${projects.website}`, "_blank")} gutterBottom>{projects.website}</Typography>
+                  <Typography onClick={()=> window.open(`${projects.github}`, "_blank")} gutterBottom>{projects.github}</Typography>
                   <Typography gutterBottom>{projects.date_completed}</Typography>
                   <Typography color="textSecondary">Tag: {projects.tag_id}</Typography>
                 </Grid>
