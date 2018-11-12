@@ -8,6 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 
+//import css for list class
+import './list.css';
+
 //setup redux state for global usage of information 
 const mapReduxStateToProps = reduxState => ({
   reduxState
@@ -58,7 +61,7 @@ const styles = theme => ({
     {/* using grid to display projects from database */}
       <div>
           {this.props.reduxState.projects.map(projects => 
-          <Paper className={classes.root} key={projects.id}>
+          <Paper className={classes.root} key={projects.id}  class="list">
           <Grid container spacing={16}>
           <Grid item>
             <div>
@@ -70,7 +73,7 @@ const styles = theme => ({
             <Grid item xs={12} sm container>
               <Grid item xs container direction="column" spacing={16}>
                 <Grid item xs>
-                  <Typography variant="subtitle1">
+                  <Typography variant="subtitle1" class="projectName">
                     {projects.name}
                   </Typography>
                   <Typography >{projects.description}</Typography>

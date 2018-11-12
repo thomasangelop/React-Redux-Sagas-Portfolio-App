@@ -11,6 +11,9 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { connect } from 'react-redux';
 
+//import css styling for list class 
+import './list.css';
+
 
 //setup redux state for global usage of information 
 const mapReduxStateToProps = reduxState => ({
@@ -79,7 +82,7 @@ const styles = theme => ({
     {/* using grid to display projects from database */}
       <div>
           {this.props.reduxState.projects.map(projects => 
-          <Paper className={classes.root} key={projects.id}>
+          <Paper className={classes.root} key={projects.id}  class="list">
           <Grid container spacing={16}>
             <Grid item>
             <div>
@@ -91,7 +94,7 @@ const styles = theme => ({
             <Grid item xs={12} sm container>
               <Grid item xs container direction="column" spacing={16}>
                 <Grid item xs>
-                  <Typography variant="subtitle1">
+                  <Typography variant="subtitle1" class="projectName">
                     {projects.name}
                   </Typography>
                   <Typography >{projects.description}</Typography>
