@@ -6,7 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import ButtonBase from '@material-ui/core/ButtonBase';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
@@ -78,9 +77,6 @@ const styles = theme => ({
   return (
     <div className={classes.root}>
     {/* using grid to display projects from database */}
-    <pre>{JSON.stringify(this.props.reduxState)}</pre>
-    {/* <img src={require('../../Images/feedbackAppPage1.png')} /> */}
-    {/* <img className={classes.img} alt="complex" src={`${projects.thumbnail}`} /> */}
       <div>
           {this.props.reduxState.projects.map(projects => 
           <Paper className={classes.root} key={projects.id}>
@@ -95,22 +91,19 @@ const styles = theme => ({
             <Grid item xs={12} sm container>
               <Grid item xs container direction="column" spacing={16}>
                 <Grid item xs>
-                  <Typography gutterBottom variant="subtitle1">
+                  <Typography variant="subtitle1">
                     {projects.name}
                   </Typography>
-                  <Typography gutterBottom>{projects.description}</Typography>
-                  <Button onClick={()=> window.open(`${projects.website}`, "_blank")} gutterBottom>{projects.website}</Button>
-                  <Button onClick={()=> window.open(`${projects.github}`, "_blank")} gutterBottom>{projects.github}</Button>
-                  <Typography gutterBottom>{projects.date_completed}</Typography>
+                  <Typography >{projects.description}</Typography>
+                  <Button onClick={()=> window.open(`${projects.website}`, "_blank")}>{projects.website}</Button>
+                  <Button onClick={()=> window.open(`${projects.github}`, "_blank")}>{projects.github}</Button>
+                  <Typography>{projects.date_completed}</Typography>
                   <Typography color="textSecondary">Tag: {projects.tag_name}</Typography>
                 </Grid>
                 <IconButton className={classes.icon}>
                   <DeleteOutlinedIcon onClick={() => this.handleRemove(projects.id)} style={{ cursor: 'pointer' }} className={classes.icon} />
                 </IconButton>
               </Grid>
-              {/* <Grid item>
-                <Typography variant="subtitle1">$19.00</Typography>
-              </Grid> */}
             </Grid>
           </Grid>
         </Paper>
