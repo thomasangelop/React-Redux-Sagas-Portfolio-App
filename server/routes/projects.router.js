@@ -6,7 +6,11 @@ const pool = require('../modules/pool.js');
 router.get('/', (req, res) => {
     // When you fetch all things in these GET routes, strongly encourage ORDER BY
     // so that things always come back in a consistent order 
-    const sqlText = `SELECT * FROM projects ORDER BY name;`;
+    // const sqlText = `SELECT * FROM projects ORDER BY name;`;
+    const sqlText = `SELECT projects.id, projects.name, projects.description, 
+    projects.thumbnail, projects.website, projects.github, projects.date_completed, 
+    tags.name AS tag_name FROM projects JOIN tags ON projects.tag_id=tags.id ORDER 
+    BY projects.name;`;
     pool.query(sqlText)
         .then((result) => {
             console.log(`Got stuff back from the database`, result);
