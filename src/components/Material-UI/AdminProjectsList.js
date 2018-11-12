@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { connect } from 'react-redux';
 
+
 //setup redux state for global usage of information 
 const mapReduxStateToProps = reduxState => ({
   reduxState
@@ -77,15 +78,19 @@ const styles = theme => ({
   return (
     <div className={classes.root}>
     {/* using grid to display projects from database */}
-    {/* <pre>{JSON.stringify(this.props.reduxState)}</pre> */}
+    <pre>{JSON.stringify(this.props.reduxState)}</pre>
+    {/* <img src={require('../../Images/feedbackAppPage1.png')} /> */}
+    {/* <img className={classes.img} alt="complex" src={`${projects.thumbnail}`} /> */}
       <div>
           {this.props.reduxState.projects.map(projects => 
           <Paper className={classes.root} key={projects.id}>
           <Grid container spacing={16}>
             <Grid item>
-              <ButtonBase className={classes.image}>
-                <img className={classes.img} alt="complex" src={projects.thumbnail} />
-              </ButtonBase>
+            <div>
+              <Grid className={classes.image}>
+              <img width={100} height={150} mode='fit' alt="project-img" src={require(`../../Images/${projects.thumbnail}`)} />
+              </Grid>
+            </div>
             </Grid>
             <Grid item xs={12} sm container>
               <Grid item xs container direction="column" spacing={16}>

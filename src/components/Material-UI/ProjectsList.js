@@ -62,10 +62,12 @@ const styles = theme => ({
           {this.props.reduxState.projects.map(projects => 
           <Paper className={classes.root} key={projects.id}>
           <Grid container spacing={16}>
-            <Grid item>
-              <ButtonBase className={classes.image}>
-                <img className={classes.img} alt="complex" src={projects.thumbnail} />
-              </ButtonBase>
+          <Grid item>
+            <div>
+              <Grid className={classes.image}>
+              <img width={100} height={150} mode='fit' alt="project-img" src={require(`../../Images/${projects.thumbnail}`)} />
+              </Grid>
+            </div>
             </Grid>
             <Grid item xs={12} sm container>
               <Grid item xs container direction="column" spacing={16}>
